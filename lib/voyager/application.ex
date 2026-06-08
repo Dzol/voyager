@@ -11,6 +11,7 @@ defmodule Voyager.Application do
       VoyagerWeb.Telemetry,
       Voyager.Repo,
       {DNSCluster, query: Application.get_env(:voyager, :dns_cluster_query) || :ignore},
+      {Oban, Application.fetch_env!(:voyager, Oban)},
       {Phoenix.PubSub, name: Voyager.PubSub},
       # Start a worker by calling: Voyager.Worker.start_link(arg)
       # {Voyager.Worker, arg},

@@ -7,6 +7,12 @@
 # General application configuration
 import Config
 
+config :voyager, Oban,
+  engine: Oban.Engines.Basic,
+  notifier: Oban.Notifiers.Postgres,
+  queues: [default: 10],
+  repo: Voyager.Repo
+
 config :voyager,
   ecto_repos: [Voyager.Repo],
   generators: [timestamp_type: :utc_datetime]

@@ -1,4 +1,5 @@
 import Config
+config :voyager, Oban, testing: :manual
 
 # Configure your database
 #
