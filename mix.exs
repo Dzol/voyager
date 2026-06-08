@@ -43,7 +43,8 @@ defmodule Voyager.MixProject do
       {:jason, "~> 1.2"},
       {:dns_cluster, "~> 0.2.0"},
       {:bandit, "~> 1.5"},
-      {:igniter, "~> 0.6", only: [:dev, :test]}
+      {:igniter, "~> 0.6", only: [:dev, :test]},
+      {:inimeg, git: "https://codeberg.org/tauzeta/inimeg.git"}
     ]
   end
 
