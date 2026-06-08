@@ -2,11 +2,15 @@ defmodule VoyagerWeb.Router do
   use VoyagerWeb, :router
 
   pipeline :api do
-    plug :accepts, ["json"]
+    plug(:accepts, ["json"])
   end
 
   scope "/api", VoyagerWeb do
-    pipe_through :api
+    pipe_through(:api)
+
+    resources("/capsules", CapsuleController, except: [:new, :edit])
+    resources("/links", LinkController, except: [:new, :edit])
+    resources("/pages", PageController, except: [:new, :edit])
   end
 
   # Enable LiveDashboard in development
@@ -19,9 +23,9 @@ defmodule VoyagerWeb.Router do
     import Phoenix.LiveDashboard.Router
 
     scope "/dev" do
-      pipe_through [:fetch_session, :protect_from_forgery]
+      pipe_through([:fetch_session, :protect_from_forgery])
 
-      live_dashboard "/dashboard", metrics: VoyagerWeb.Telemetry
+      live_dashboard("/dashboard", metrics: VoyagerWeb.Telemetry)
     end
   end
 end
