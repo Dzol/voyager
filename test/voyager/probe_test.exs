@@ -21,7 +21,13 @@ defmodule Voyager.ProbeTest do
     end
 
     test "create_page/1 with valid data creates a page" do
-      valid_attrs = %{meta: "some meta", size: 42, status: 42, domain: "some domain", url: "some url"}
+      valid_attrs = %{
+        meta: "some meta",
+        size: 42,
+        status: 42,
+        domain: "some domain",
+        url: "some url"
+      }
 
       assert {:ok, %Page{} = page} = Probe.create_page(valid_attrs)
       assert page.meta == "some meta"
@@ -37,7 +43,14 @@ defmodule Voyager.ProbeTest do
 
     test "update_page/2 with valid data updates the page" do
       page = page_fixture()
-      update_attrs = %{meta: "some updated meta", size: 43, status: 43, domain: "some updated domain", url: "some updated url"}
+
+      update_attrs = %{
+        meta: "some updated meta",
+        size: 43,
+        status: 43,
+        domain: "some updated domain",
+        url: "some updated url"
+      }
 
       assert {:ok, %Page{} = page} = Probe.update_page(page, update_attrs)
       assert page.meta == "some updated meta"

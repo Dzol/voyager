@@ -46,4 +46,6 @@ mix phx.gen.json Probe Capsule capsules \
 - **Loop-back**: Arrange indexes when we focus more on controller
 - The Phoenix Context should have a seed function, a crawl function, and a bots function?
 - Let's start with a simple crawl confined to a domain
-- 
+- Just hit a single page via IEx and Oban
+- Not a crawler till we're _looping_ so let's do that
+- To keep it safe for experimenting let's include a depth limit
