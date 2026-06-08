@@ -1,6 +1,8 @@
 defmodule VoyagerWeb.Router do
   use VoyagerWeb, :router
 
+  import Oban.Web.Router
+
   pipeline :api do
     plug(:accepts, ["json"])
   end
@@ -26,6 +28,7 @@ defmodule VoyagerWeb.Router do
       pipe_through([:fetch_session, :protect_from_forgery])
 
       live_dashboard("/dashboard", metrics: VoyagerWeb.Telemetry)
+      oban_dashboard("/oban")
     end
   end
 end

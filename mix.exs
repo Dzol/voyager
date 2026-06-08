@@ -32,6 +32,7 @@ defmodule Voyager.MixProject do
 
   defp deps do
     [
+      {:oban_web, "~> 2.0"},
       {:oban, "~> 2.0"},
       {:phoenix, "~> 1.8.7"},
       {:phoenix_ecto, "~> 4.5"},

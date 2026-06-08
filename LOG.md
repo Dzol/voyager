@@ -44,4 +44,6 @@ mix phx.gen.json Probe Capsule capsules \
 - Oban will handle operational stuff
 - Let's get things working E2E
 - **Loop-back**: Arrange indexes when we focus more on controller
+- The Phoenix Context should have a seed function, a crawl function, and a bots function?
+- Let's start with a simple crawl confined to a domain
 - 

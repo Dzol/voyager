@@ -16,6 +16,6 @@ defmodule Voyager.Probe.Page do
   def changeset(page, attrs) do
     page
     |> cast(attrs, [:url, :domain, :status, :meta, :size])
-    |> validate_required([:url, :domain, :status, :meta, :size])
+    |> validate_required([:url])
   end
 end
