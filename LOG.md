@@ -49,3 +49,6 @@ mix phx.gen.json Probe Capsule capsules \
 - Just hit a single page via IEx and Oban
 - Not a crawler till we're _looping_ so let's do that
 - To keep it safe for experimenting let's include a depth limit
+- Stepping away for a mo
+- I was going to go with working on something E2E, from controller, to Oban/crawl...
+- The trickier bit is all around Oban though; We prob won't get to dealing with `robots.txt` w/in three hours, but we can try addressing the host x host rate limit

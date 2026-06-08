@@ -34,23 +34,27 @@ defmodule Voyager do
 
           page
           |> Enum.filter(&Inimeg.Content.link?/1)
-          |> Enum.map(fn x ->
-            [link | _] =
-              x
-              |> String.trim_leading("=>")
-              |> String.trim()
-              |> String.split(["\s", "\t"], parts: 2)
+          |> Enum.map(
+            _extract_link = fn x ->
+              [link | _] =
+                x
+                |> String.trim_leading("=>")
+                |> String.trim()
+                |> String.split(["\s", "\t"], parts: 2)
 
-            URI.parse(link)
-          end)
-          |> Enum.map(fn %URI{} = x ->
-            if x.scheme == nil or x.host == nil or x.port == nil do
-              %{host: host} = URI.parse(link)
-              URI.merge(%URI{scheme: "gemini", host: host, port: 1965}, x)
-            else
-              x
+              URI.parse(link)
             end
-          end)
+          )
+          |> Enum.map(
+            _from_relative_to_absolute = fn %URI{} = x ->
+              if x.scheme == nil or x.host == nil or x.port == nil do
+                %{host: host} = URI.parse(link)
+                URI.merge(%URI{scheme: "gemini", host: host, port: 1965}, x)
+              else
+                x
+              end
+            end
+          )
           |> Enum.filter(fn x -> x.scheme == "gemini" end)
           |> Enum.map(&URI.to_string/1)
           |> Enum.map(&%{link: &1, iteration_max: imax, iteration_num: inum + 1})
