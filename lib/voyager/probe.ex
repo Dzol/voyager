@@ -3,6 +3,10 @@ defmodule Voyager.Probe do
   The Probe context.
   """
 
+  #
+  # To-Do: Talk through Phoenix Contexts and (Ash Domains)
+  #
+
   import Ecto.Query, warn: false
   alias Voyager.Repo
 
