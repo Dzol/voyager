@@ -40,14 +40,29 @@ Most Phoenix applications don't need a generic server.
 The framework, Oban, and other tooling has us covered most of the time.
 I can't think of where I'd use one here, but there might be a reason to use one, given it is not a regular Phoenix application.
 
-I might consider a ETS table behind an `Agent` keep `robots.txt` rulesets or simply help to ask the question of if one has to be fetched in the first place.
+I might consider a ETS table behind an `Agent` to keep `robots.txt` rulesets or simply help to ask the question of if one has to be fetched at all.
 I can't think of a caching scenario.
 I can't see how quering for a page or robot rule would correlate with time so no sense in caching these.
 
 On the fault-tolerance point: If we assume we don't roll our own OTP tree I would scope work into several workers so that each one has limited scope around what can fail.
-That means workers have a simple responsibility, bound to one external I/O call, and then do a hand over by queuing more work.
-A worker to crawl one page should insert links into the DB, and schedule another job to check robot rulesets, and schedule respective pages.
+That means workers have a simple responsibility, bound to one external I/O call, and then do a *hand over* by queuing more work (preferably DB insertion plust a `Producer` which will kick off `Worker` jobs).
+A worker to crawl one page should insert links into the DB, and schedule another job to check robot rulesets, and schedule respective pages itself only if that work proves to be simple.
 
 ### System Design
 
 I would avoid ALL "abstraction" till the system is already clean and tidy, i.e. once it is understood, bad abstractions are much worse than none at all.
+
+### Further Reflection
+
+The test suite is obviously lacking, and I'm fine with that through early development as we need to get real validation, but once `robot.txt` code is in place I'd start to collect "regression" data to start with and then unit test. This was a worth-while exercise. I'm looking forward to getting it on a small box to observe performance. Talking points that didn't get a code comment:
+
+- Attempt table/column
+- Status codes and Oban
+- JSON/HTTP API
+- Indexes
+- Most common query
+- >1 node: Oban -v- RMQ
+- Would a broadcast/PubSub make sense with a Broadway pipeline?
+- Testing around concurrency
+- Error handling and "[don't] let it crash"
+- The assessment criteria

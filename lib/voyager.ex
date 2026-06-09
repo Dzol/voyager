@@ -57,6 +57,7 @@ defmodule Voyager do
           )
           |> Enum.filter(fn x -> x.scheme == "gemini" end)
           |> Enum.map(&URI.to_string/1)
+          # To-Do: Rule out those Pages/URLs we've already visited or discarded!
           |> Enum.map(&%{link: &1, iteration_max: imax, iteration_num: inum + 1})
           |> Enum.map(&Workers.Spider.new/1)
           |> Oban.insert_all()

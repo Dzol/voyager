@@ -4,6 +4,7 @@ defmodule Voyager.Probe.Capsule do
 
   schema "capsules" do
     field :domain, :string
+    # To-Do: Talking-point on how to go about robots.txt (at scale and otherwise)
     field :robots, :string
 
     timestamps(type: :utc_datetime)

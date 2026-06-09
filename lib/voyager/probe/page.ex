@@ -2,6 +2,17 @@ defmodule Voyager.Probe.Page do
   use Ecto.Schema
   import Ecto.Changeset
 
+  #
+  # Interesting fields that might introduce considerable complexity to
+  # code-base:
+  #
+  # - Peer Stack, IP address, & port number
+  # - SSL/TLS certificate information
+  # - Redirect chain
+  # - Latency
+  # - Internal/External Link count
+  #
+
   schema "pages" do
     field :url, :string
     field :domain, :string
