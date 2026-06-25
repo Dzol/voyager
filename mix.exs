@@ -45,7 +45,7 @@ defmodule Voyager.MixProject do
       {:dns_cluster, "~> 0.2.0"},
       {:bandit, "~> 1.5"},
       {:igniter, "~> 0.6", only: [:dev, :test]},
-      {:inimeg, git: "https://codeberg.org/tauzeta/inimeg.git"}
+      {:meg, git: "https://codeberg.org/tauzeta/meg.git"}
     ]
   end
 

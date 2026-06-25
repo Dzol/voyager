@@ -12,10 +12,10 @@ defmodule Voyager do
     def perform(%Oban.Job{
           args: %{"link" => link, "iteration_max" => imax, "iteration_num" => inum}
         }) do
-      resp = link |> URI.parse() |> Inimeg.Protocol.fetch()
+      resp = link |> URI.parse() |> Meg.Protocol.fetch()
 
       try do
-        Inimeg.Page.read(resp.body)
+        Meg.Page.read(resp.body)
       rescue
         _ ->
           :ok
@@ -33,7 +33,7 @@ defmodule Voyager do
           |> Voyager.Repo.insert()
 
           page
-          |> Enum.filter(&Inimeg.Content.link?/1)
+          |> Enum.filter(&Meg.Content.link?/1)
           |> Enum.map(
             _extract_link = fn x ->
               [link | _] =
